@@ -4,7 +4,7 @@ clone_folder: c:\projects\source
 build_script:
   - mkdir build
   - cd build
-  - cmake c:\projects\source -G "Visual Studio 15"
+  - cmake -DBOOST_ROOT=c:\Libraries\boost_1_67_0 c:\projects\source -G "Visual Studio 15"
   - cmake --build . --config "Debug"
 test_script:
   - ctest -C Debug -j2 --verbose
