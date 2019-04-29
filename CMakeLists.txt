@@ -18,6 +18,7 @@ endif()
 find_package(Boost COMPONENTS system filesystem unit_test_framework REQUIRED)
 
 set(needed_features cxx_constexpr cxx_relaxed_constexpr)
+set(CMAKE_CXX_STANDARD 17)
 
 enable_testing()
 add_executable(vec3_test ./tests/vec3_test.cpp)
