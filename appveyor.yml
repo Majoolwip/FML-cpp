@@ -2,10 +2,9 @@ image:
   - Visual Studio 2017
 clone_folder: c:\projects\source
 build_script:
-- cmd: >-
-  mkdir build
-  cd beuild
-  cmake c:\projects\source -G "Visual Studio 15"
-  cmake --build . --config "Debug"
+  - mkdir build
+  - cd beuild
+  - cmake c:\projects\source -G "Visual Studio 15"
+  - cmake --build . --config "Debug"
 test_script:
-- cmd: ctest -C Debug -j2
+  - ctest -C Debug -j2
