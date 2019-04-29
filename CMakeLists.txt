@@ -22,6 +22,7 @@ set(CMAKE_CXX_STANDARD 17)
 enable_testing()
 add_executable(vec3_test ./tests/vec3_test.cpp)
 add_test(Vec3_test vec3_test)
+target_include_directories(vec3_test ${Boost_INCLUDE_DIR})
 target_link_libraries(vec3_test ${Boost_FILESYSTEM_LIBRARY}
                                   ${Boost_SYSTEM_LIBRARY}
                                   ${Boost_UNIT_TEST_FRAMEWORK_LIBRARY})
