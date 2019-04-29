@@ -17,7 +17,6 @@ endif()
 
 find_package(Boost COMPONENTS system filesystem unit_test_framework REQUIRED)
 
-set(needed_features cxx_constexpr cxx_relaxed_constexpr)
 set(CMAKE_CXX_STANDARD 17)
 
 enable_testing()
@@ -26,4 +25,3 @@ add_test(Vec3_test vec3_test)
 target_link_libraries(vec3_test ${Boost_FILESYSTEM_LIBRARY}
                                   ${Boost_SYSTEM_LIBRARY}
                                   ${Boost_UNIT_TEST_FRAMEWORK_LIBRARY})
-target_compile_features(vec3_test PRIVATE ${needed_features})
