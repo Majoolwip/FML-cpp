@@ -8,10 +8,10 @@ addons:
       - ubuntu-toolchain-r-test
       - sourceline: 'ppa:mhier/libboost-latest'
     packages:
-      - g++-5
+      - g++
       - boost1.67
 
 script:
-  - CXX=/usr/bin/g++-5 CC=/usr/bin/gcc-5 cmake .
+  - CXX=/usr/bin/g++ CC=/usr/bin/gcc cmake .
   - cmake --build . -- -j2
   - ctest -j2 --verbose
