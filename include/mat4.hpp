@@ -8,9 +8,22 @@
 namespace fml {
   template<typename T>
   struct Mat4 {
-    std::array<T,16> m;
+    const std::array<T,16> m;
 
-    constexpr Vec3<T> transform(const Vec3<T> vec) {
+    constexpr Mat4<T> operator* (const Mat4<T>& other) const noexcept {
+      std::array<T, 16> res;
+      for (int i = 0; i < 4; ++i) {
+        for (int j = 0; j < 4; ++j) {
+          res[i + j * 4] = m[i] * other.m[j * 4] +
+                           m[i + 4] * other.m[1 + j * 4] +
+                           m[i + 8] * other.m[2 + j * 4] +
+                           m[i + 8] * other.m[3 + j * 4];
+        }
+      }
+      return Mat4<T> { res };
+    }
+
+    constexpr Vec3<T> transform(const Vec3<T>& vec) const noexcept {
       return Vec3<T> {
         m[0] * vec.x + m[4] * vec.y + m[8] * vec.z + m[12],
         m[1] * vec.x + m[5] * vec.y + m[9] * vec.z + m[13],
