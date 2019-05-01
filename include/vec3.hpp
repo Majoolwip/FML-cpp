@@ -13,8 +13,12 @@ namespace fml {
     T y;
     T z;
 
-    constexpr T length() const noexcept {
+    T length() const noexcept {
       return std::sqrt(x * x + y * y + z * z);
+    }
+
+    constexpr T length_squared() const noexcept {
+      return x * x + y * y + z * z;
     }
 
     constexpr Vec3<T> normalized() const noexcept {
