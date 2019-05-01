@@ -19,7 +19,7 @@ namespace fml {
 
     constexpr Vec3<T> normalized() const noexcept {
       const T length = this->length();
-      if constexpr (std::is_same<T,int>::value) {
+      if constexpr (std::is_integral<T>::value) {
         if (length == 0) {
           return Vec3 {0, 0, 0};
         } else {
@@ -62,7 +62,7 @@ namespace fml {
       return Vec3<T> {std::abs(x), std::abs(y), std::abs(z)};
     }
 
-    constexpr bool partial_eq(const Vec3<T>& other, const T epsilon) {
+    constexpr bool partial_eq(const Vec3<T>& other, const T epsilon) const noexcept {
       return std::abs(x - other.x) < epsilon &&
              std::abs(y - other.y) < epsilon &&
              std::abs(z - other.z) < epsilon;
