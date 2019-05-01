@@ -26,3 +26,9 @@ target_include_directories(vec3_test PUBLIC ${Boost_INCLUDE_DIR})
 target_link_libraries(vec3_test ${Boost_FILESYSTEM_LIBRARY}
                                   ${Boost_SYSTEM_LIBRARY}
                                   ${Boost_UNIT_TEST_FRAMEWORK_LIBRARY})
+add_executable(mat4_test ./tests/mat4_test.cpp)
+add_test(Mat4_test mat4_test)
+target_include_directories(mat4_test PUBLIC ${Boost_INCLUDE_DIR})
+target_link_libraries(mat4_test ${Boost_FILESYSTEM_LIBRARY}
+                                  ${Boost_SYSTEM_LIBRARY}
+                                  ${Boost_UNIT_TEST_FRAMEWORK_LIBRARY})
