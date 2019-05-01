@@ -1,9 +1,17 @@
 cmake_minimum_required(VERSION 3.2)
 
 if (MSVC)
-  add_compile_options(/W4)
+  add_compile_options(/W4 /permissive)
 else ()
-  add_compile_options(-Wall -Wextra -Wpedantic)
+  add_compile_options(-Wall
+                      -Wextra
+                      -Wpedantic
+                      -Wshadow
+                      -Wconversion
+                      -Wsign-conversion
+                      -Wuseless-cast
+                      -Wdouble-promotion
+                      -Wunused)
 endif ()
 
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
