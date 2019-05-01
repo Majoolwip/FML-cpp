@@ -8,14 +8,14 @@
 BOOST_AUTO_TEST_CASE(length_test)
 {
   constexpr fml::Vec3<double> a {1.0, 2.0, 3.0};
-  constexpr auto len = a.length();
+  const auto len = a.length();
   BOOST_TEST(len == std::sqrt(1.0 * 1.0 + 2.0 * 2.0 + 3.0 * 3.0));
 }
 
 BOOST_AUTO_TEST_CASE(normalized_test)
 {
   constexpr fml::Vec3<double> a {1.0, 2.0, 3.0};
-  constexpr auto len = a.normalized().length();
+  const auto len = a.normalized().length();
   BOOST_TEST(std::abs(len - 1.0) <= EPSILON);
 }
 
