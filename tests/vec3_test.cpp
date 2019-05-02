@@ -63,3 +63,41 @@ BOOST_AUTO_TEST_CASE(clamp_test)
   BOOST_TEST(a.clamp(-1.0, 1.0).partial_eq(expected, EPSILON));
 
 }
+
+BOOST_AUTO_TEST_CASE(vec_add)
+{
+  constexpr fml::Vec3<double> a {1.0, 2.0, 3.0};
+  constexpr fml::Vec3<double> b = a + a;
+  constexpr fml::Vec3<double> c = a + b;
+  BOOST_TEST(b.partial_eq({2.0, 4.0, 6.0}, EPSILON));
+  BOOST_TEST(c.partial_eq({3.0, 6.0, 9.0}, EPSILON));
+}
+
+BOOST_AUTO_TEST_CASE(vec_sub)
+{
+  constexpr fml::Vec3<double> a {1.0, 2.0, 3.0};
+  constexpr fml::Vec3<double> b = a - a;
+  constexpr fml::Vec3<double> c = a - fml::Vec3<double>{0.5, 0.8, 1.0};
+  BOOST_TEST(b.partial_eq({0.0, 0.0, 0.0}, EPSILON));
+  BOOST_TEST(c.partial_eq({0.5, 1.2, 2.0}, EPSILON));
+}
+
+BOOST_AUTO_TEST_CASE(vec_mul)
+{
+  constexpr fml::Vec3<double> a {1.0, 2.0, 3.0};
+  constexpr fml::Vec3<double> b = a * a;
+  constexpr fml::Vec3<double> c = a * 5.0;
+  constexpr fml::Vec3<double> d = 5.0 * a;
+  BOOST_TEST(b.partial_eq({1.0, 4.0, 9.0}, EPSILON));
+  BOOST_TEST(c.partial_eq({5.0, 10.0, 15.0}, EPSILON));
+  BOOST_TEST(d.partial_eq({5.0, 10.0, 15.0}, EPSILON));
+}
+
+BOOST_AUTO_TEST_CASE(vec_div)
+{
+  constexpr fml::Vec3<double> a {1.0, 2.0, 3.0};
+  constexpr fml::Vec3<double> b = a / a;
+  constexpr fml::Vec3<double> c = a / 5.0;
+  BOOST_TEST(b.partial_eq({1.0, 1.0, 1.0}, EPSILON));
+  BOOST_TEST(c.partial_eq({1.0 / 5.0, 2.0 / 5.0, 3.0 / 5.0}, EPSILON));
+}
