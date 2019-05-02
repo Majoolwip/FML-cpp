@@ -110,6 +110,10 @@ namespace fml {
       return Vec3<T> {this->x / right.x, this->y / right.y, this->z / right.z};
     }
 
+    constexpr Vec3<T> operator/ (const T right) const noexcept {
+      return Vec3<T> {this->x / right, this->y / right, this->z / right};
+    }
+
     constexpr Vec3<T> operator/= (const Vec3<T>& right) noexcept {
       x /= right.x;
       y /= right.y;
