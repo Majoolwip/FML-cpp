@@ -11,7 +11,8 @@ else ()
                       -Wsign-conversion
                       -Wuseless-cast
                       -Wdouble-promotion
-                      -Wunused)
+                      -Wunused
+                      -Winvalid-constexpr)
 endif ()
 
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
