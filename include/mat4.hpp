@@ -8,20 +8,7 @@
 namespace fml {
   template<typename T>
   struct Mat4 {
-    const std::array<T,16> m;
-
-    constexpr Mat4<T> operator* (const Mat4<T>& other) const noexcept {
-      std::array<T, 16> res;
-      for (int i = 0; i < 4; ++i) {
-        for (int j = 0; j < 4; ++j) {
-          res[i + j * 4] = m[i] * other.m[j * 4] +
-                           m[i + 4] * other.m[1 + j * 4] +
-                           m[i + 8] * other.m[2 + j * 4] +
-                           m[i + 8] * other.m[3 + j * 4];
-        }
-      }
-      return Mat4<T> { res };
-    }
+    std::array<T,16> m;
 
     constexpr Vec3<T> transform(const Vec3<T>& vec) const noexcept {
       return Vec3<T> {
@@ -220,6 +207,35 @@ namespace fml {
           -(top + bottom) / height,
           -(far + near) / depth,
           1
+        }
+      };
+    }
+
+    constexpr Mat4<T>& operator=(const Mat4<T>& other) {
+      m = other.m;
+      return *this;
+    }
+
+    constexpr Mat4<T> operator* (const Mat4<T>& other) const noexcept {
+      return Mat4 {
+        {
+          m[0] * other.m[0] + m[4] * other.m[1] + m[8] * other.m[2] + m[12] * other.m[3],
+          m[1] * other.m[0] + m[5] * other.m[1] + m[9] * other.m[2] + m[13] * other.m[3],
+          m[2] * other.m[0] + m[6] * other.m[1] + m[10] * other.m[2] + m[14] * other.m[3],
+          m[3] * other.m[0] + m[7] * other.m[1] + m[11] * other.m[2] + m[15] * other.m[3],
+          m[0] * other.m[4] + m[4] * other.m[5] + m[8] * other.m[6] + m[12] * other.m[7],
+          m[1] * other.m[4] + m[5] * other.m[5] + m[9] * other.m[6] + m[13] * other.m[7],
+          m[2] * other.m[4] + m[6] * other.m[5] + m[10] * other.m[6] + m[14] * other.m[7],
+          m[3] * other.m[4] + m[7] * other.m[5] + m[11] * other.m[6] + m[15] * other.m[7],
+          m[0] * other.m[8] + m[4] * other.m[9] + m[8] * other.m[10] + m[12] * other.m[11],
+          m[1] * other.m[8] + m[5] * other.m[9] + m[9] * other.m[10] + m[13] * other.m[11],
+          m[2] * other.m[8] + m[6] * other.m[9] + m[10] * other.m[10] + m[14] * other.m[11],
+          m[3] * other.m[8] + m[7] * other.m[9] + m[11] * other.m[10] + m[15] * other.m[11],
+          m[0] * other.m[12] + m[4] * other.m[13] + m[8] * other.m[14] + m[12] * other.m[15],
+          m[1] * other.m[12] + m[5] * other.m[13] + m[9] * other.m[14] + m[13] * other.m[15],
+          m[2] * other.m[12] + m[6] * other.m[13] + m[10] * other.m[14] + m[14] * other.m[15],
+          m[3] * other.m[12] + m[7] * other.m[13] + m[11] * other.m[14] + m[15] * other.m[15],
+
         }
       };
     }
